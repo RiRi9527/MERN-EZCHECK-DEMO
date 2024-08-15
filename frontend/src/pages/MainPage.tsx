@@ -1,4 +1,4 @@
-import SettingNav from "@/components/SettingNav";
+// import SettingNav from "@/components/SettingNav";
 import UserInfoNav from "@/components/UserInfoNav";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -60,12 +60,12 @@ const MainPage = () => {
             !isMenuOpen && "hidden"
           }`}
         >
-          <div className="w-full h-9">
+          <div className="w-full h-20">
             <UserInfoNav handleUserCreateDialog={handleUserCreateDialog} />
           </div>
-          <div className="w-full h-9">
+          {/* <div className="w-full h-9">
             <SettingNav />
-          </div>
+          </div> */}
         </div>
         <div className="flex-1 flex justify-center bg-gray-200">
           <div className="w-full flex justify-center">

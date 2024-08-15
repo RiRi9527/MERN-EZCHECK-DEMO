@@ -26,7 +26,7 @@ const UserInfoNav = ({ handleUserCreateDialog }: Props) => {
 
   return (
     <div
-      className="h-full w-full flex flex-col items-center justify-center hover:bg-gray-800 border-b border-gray-500"
+      className="h-full w-full flex flex-col items-center justify-center hover:bg-gray-800  border-gray-500"
       onMouseEnter={() => {
         setShow(true);
         refetchUsers();
