@@ -220,14 +220,8 @@ const getPayroll = async (req: Request, res: Response) => {
 
     if (user?.position === "Customer Service I") {
       const convertedTimes = attendanceRecords.map((time) => {
-        const timeZone = "America/Detroit"; // Detroit time zone
-
-        const startDate = new Date(
-          new Date(time.start).toLocaleString("en-US", { timeZone })
-        );
-        const endDate = new Date(
-          new Date(time.end).toLocaleString("en-US", { timeZone })
-        );
+        const startDate = new Date(time.start);
+        const endDate = new Date(time.end);
         const dayOfWeek = startDate
           .toLocaleString("en-US", { weekday: "long" })
           .toLowerCase(); // Get the full name of the day of the week
@@ -242,13 +236,16 @@ const getPayroll = async (req: Request, res: Response) => {
           return;
         }
 
+        const timeZone = "America/Detroit"; // Detroit time zone
+
         // Assuming time.start and time.end are ISO strings or similar
-        const scheduleCheckIn = new Date(
-          new Date(time.start).toLocaleString("en-US", { timeZone })
-        );
-        const scheduleCheckOut = new Date(
-          new Date(time.end).toLocaleString("en-US", { timeZone })
-        );
+        let scheduleCheckInStr = new Date(time.start).toLocaleString("en-US", {
+          timeZone,
+        });
+
+        let scheduleCheckOutStr = new Date(time.end).toLocaleString("en-US", {
+          timeZone,
+        });
 
         if (schedule?.checkIn && schedule?.checkOut) {
           const [checkInHr, checkInMin] = schedule.checkIn
@@ -258,13 +255,32 @@ const getPayroll = async (req: Request, res: Response) => {
             .split(":")
             .map(Number);
 
-          // Set hours and minutes to the Date object
-          scheduleCheckIn.setHours(checkInHr);
-          scheduleCheckIn.setMinutes(checkInMin);
+          const adjustedCheckInHr =
+            checkInHr >= 12 ? checkInHr - 12 : checkInHr;
+          const adjustedCheckOutHr =
+            checkOutHr >= 12 ? checkOutHr - 12 : checkOutHr;
 
-          scheduleCheckOut.setHours(checkOutHr);
-          scheduleCheckOut.setMinutes(checkOutMin);
+          // Replace the hours and minutes in the scheduleCheckIn string
+          scheduleCheckInStr = scheduleCheckInStr.replace(
+            /(\d{1,2}):(\d{2})(:(\d{2}))?/,
+            (_, hour, minute, __, seconds) =>
+              `${adjustedCheckInHr.toString().padStart(2, "0")}:${checkInMin
+                .toString()
+                .padStart(2, "0")}${seconds ? `:${seconds}` : ""}`
+          );
+
+          // Replace the hours and minutes in the scheduleCheckOut string
+          scheduleCheckOutStr = scheduleCheckOutStr.replace(
+            /(\d{1,2}):(\d{2})(:(\d{2}))?/,
+            (_, hour, minute, __, seconds) =>
+              `${adjustedCheckOutHr.toString().padStart(2, "0")}:${checkOutMin
+                .toString()
+                .padStart(2, "0")}${seconds ? `:${seconds}` : ""}`
+          );
         }
+
+        const scheduleCheckIn = new Date(scheduleCheckInStr);
+        const scheduleCheckOut = new Date(scheduleCheckOutStr);
 
         const finalCheckIn =
           startDate > scheduleCheckIn ? startDate : scheduleCheckIn;
