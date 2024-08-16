@@ -172,6 +172,57 @@ const WorkSchedule = () => {
     await updateSchedule(formSchedule);
     refetch();
   };
+
+  // const handleScheduleSubmit = async () => {
+  //   const daysMap: { [key: string]: keyof DayScheduleTwo } = {
+  //     Mon: "monday",
+  //     Tue: "tuesday",
+  //     Wed: "wednesday",
+  //     Thu: "thursday",
+  //     Fri: "friday",
+  //     Sat: "saturday",
+  //     Sun: "sunday",
+  //   };
+
+  //   const formSchedule = Object.entries(schedule).reduce(
+  //     (acc, [day, { checkIn, checkOut, disable }]) => {
+  //       if (!disable && checkIn && checkOut) {
+  //         const fullDay = daysMap[day];
+
+  //         // Create a new date object and set the time based on checkIn and checkOut
+  //         const checkInDate = new Date();
+  //         const checkOutDate = new Date();
+
+  //         // Extract hours and minutes from checkIn and checkOut
+  //         const [checkInHours, checkInMinutes] = checkIn.split(":").map(Number);
+  //         const [checkOutHours, checkOutMinutes] = checkOut
+  //           .split(":")
+  //           .map(Number);
+
+  //         // Update the date object with the new time
+  //         checkInDate.setHours(checkInHours, checkInMinutes, 0, 0);
+  //         checkOutDate.setHours(checkOutHours, checkOutMinutes, 0, 0);
+
+  //         // Convert to ISO string
+  //         acc[fullDay.toLowerCase()] = {
+  //           checkIn: checkInDate.toISOString(),
+  //           checkOut: checkOutDate.toISOString(),
+  //         };
+  //       }
+  //       return acc;
+  //     },
+  //     {} as {
+  //       [key: string]: {
+  //         checkIn: string | undefined;
+  //         checkOut: string | undefined;
+  //       };
+  //     }
+  //   );
+
+  //   await updateSchedule(formSchedule);
+  //   refetch();
+  // };
+
   return (
     <Card className="h-full w-full flex flex-col items-center justify-center px-4 overflow-y-auto">
       <div className="mt-7 sm:p-3 lg:p-12 text-xl">

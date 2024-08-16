@@ -279,8 +279,32 @@ const getPayroll = async (req: Request, res: Response) => {
           );
         }
 
-        const scheduleCheckIn = new Date(scheduleCheckInStr);
-        const scheduleCheckOut = new Date(scheduleCheckOutStr);
+        const scheduleCheckIn = new Date(
+          new Intl.DateTimeFormat("en-US", {
+            timeZone,
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true,
+          }).format(new Date(scheduleCheckInStr))
+        );
+        const scheduleCheckOut = new Date(
+          new Intl.DateTimeFormat("en-US", {
+            timeZone,
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true,
+          }).format(new Date(scheduleCheckOutStr))
+        );
+
+        // const scheduleCheckOut = new Date(scheduleCheckOutStr);
 
         const finalCheckIn =
           startDate > scheduleCheckIn ? startDate : scheduleCheckIn;
