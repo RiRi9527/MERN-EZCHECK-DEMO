@@ -220,8 +220,14 @@ const getPayroll = async (req: Request, res: Response) => {
 
     if (user?.position === "Customer Service I") {
       const convertedTimes = attendanceRecords.map((time) => {
-        const startDate = new Date(time.start);
-        const endDate = new Date(time.end);
+        const timeZone = "America/Detroit"; // Detroit time zone
+
+        const startDate = new Date(
+          new Date(time.start).toLocaleString("en-US", { timeZone })
+        );
+        const endDate = new Date(
+          new Date(time.end).toLocaleString("en-US", { timeZone })
+        );
         const dayOfWeek = startDate
           .toLocaleString("en-US", { weekday: "long" })
           .toLowerCase(); // Get the full name of the day of the week
@@ -236,8 +242,7 @@ const getPayroll = async (req: Request, res: Response) => {
           return;
         }
 
-        const timeZone = "America/Detroit"; // Detroit time zone
-
+        // Assuming time.start and time.end are ISO strings or similar
         const scheduleCheckIn = new Date(
           new Date(time.start).toLocaleString("en-US", { timeZone })
         );
