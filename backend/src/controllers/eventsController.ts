@@ -236,8 +236,14 @@ const getPayroll = async (req: Request, res: Response) => {
           return;
         }
 
-        const scheduleCheckIn = new Date(time.start); // Assuming time.start is defined
-        const scheduleCheckOut = new Date(time.end);
+        const timeZone = "America/Detroit"; // Detroit time zone
+
+        const scheduleCheckIn = new Date(
+          new Date(time.start).toLocaleString("en-US", { timeZone })
+        );
+        const scheduleCheckOut = new Date(
+          new Date(time.end).toLocaleString("en-US", { timeZone })
+        );
 
         if (schedule?.checkIn && schedule?.checkOut) {
           const [checkInHr, checkInMin] = schedule.checkIn
