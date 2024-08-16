@@ -262,8 +262,8 @@ const getPayroll = async (req: Request, res: Response) => {
 
         return {
           title: "Working Time",
-          start: finalCheckIn.toLocaleString(),
-          end: finalCheckOut.toLocaleString(),
+          start: finalCheckIn.toISOString(),
+          end: finalCheckOut.toISOString(),
         };
       });
 
