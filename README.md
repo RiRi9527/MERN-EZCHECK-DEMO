@@ -3,7 +3,7 @@ MERN-EZCHECK is a full-stack project for employee management applications
 1. Things I did
    Frontend:
 
-   - Use vite, react, and typescripte, and tailwindss/shadcn/ui to build
+   - Use Vite, React, TypeScript, and TailwindCSS/ShadCN/UI to build
    - Use react-big-calendar to create an effect similar to Google Calendar using third-party libraries
    - Use react-query to handle REST API CRUD operations, manage caching, and more
 
