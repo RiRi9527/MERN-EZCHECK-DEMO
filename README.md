@@ -1,28 +1,40 @@
 MERN-EZCHECK is a full-stack project for employee management applications
 
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+
 <img src="/Main.png" alt="main" width="600"/> 
  <div>
    <img src="/Payroll.png" alt="payroll" width="300">
-   <img src="/Event.png" alt="main" width="300">
+ <div class="container">
+  <img src="/Event.png" alt="main" width="300">
+  <img src="/Edit.png" alt="main" width="300">
+</div>
  </div>
+ 
  
 1. Things I did
    Frontend:
 
-   - Use Vite, React, TypeScript, and TailwindCSS/ShadCN/UI to build
-   - Use react-big-calendar to create an effect similar to Google Calendar using third-party libraries
-   - Use react-query to handle REST API CRUD operations, manage caching, and more
-   - Use TailwindCSS to handle responsive layouts to adapt to various screen sizes
+- Use Vite, React, TypeScript, and TailwindCSS/ShadCN/UI to build
+- Use react-big-calendar to create an effect similar to Google Calendar using third-party libraries
+- Use react-query to handle REST API CRUD operations, manage caching, and more
+- Use TailwindCSS to handle responsive layouts to adapt to various screen sizes
 
-   Backend:
+Backend:
 
-   - Use node.js express.js build backend
-   - Use CORS for security
-   - Use REST API for API design.
-   - Use a token for authentication - use jsonwebtoken is a library used in Node.js applications to create and verify JSON Web Tokens (JWT)
-   - Use Cloudinary to handle images: upload images to the cloud and store the image URL as a string in the database
-   - Use MongoDB as the database and Mongoose to connect to it
-   - Designed authentication permissions where different permissions allow fetching different data. Higher-level permissions can modify and delete data, among other things
+- Use node.js express.js build backend
+- Use CORS for security
+- Use REST API for API design.
+- Use a token for authentication - use jsonwebtoken is a library used in Node.js applications to create and verify JSON Web Tokens (JWT)
+- Use Cloudinary to handle images: upload images to the cloud and store the image URL as a string in the database
+- Use MongoDB as the database and Mongoose to connect to it
+- Designed authentication permissions where different permissions allow fetching different data. Higher-level permissions can modify and delete data, among other things
 
 2. Problems I solved
 
