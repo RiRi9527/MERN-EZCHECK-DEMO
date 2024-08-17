@@ -4,7 +4,7 @@ MERN-EZCHECK is a full-stack project for employee management applications
 <img src="/Main.png" alt="main" width="600"/> 
  <div>
     <img src="/Payroll.png" alt="payroll" width="300">
-    <img src="/Edit.png" alt="main" width="600">
+    <img src="/Edit.png" alt="main" width="500">
  </div>
    <img src="/Event.png" alt="main" width="450">
  
