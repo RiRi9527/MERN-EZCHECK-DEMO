@@ -19,7 +19,7 @@ MERN-EZCHECK is a full-stack project for employee management applications
    - Use Cloudinary to handle images: upload images to the cloud and store the image URL as a string in the database
    - Use MongoDB as the database and Mongoose to connect to it
 
-2. Probloms I sloved
+2. Problems I solved
 
    - Express.js itself does not have the capability to recognize or handle tokens/cookies. Instead, I used jsonwebtoken/cookie-parser to verify and decode tokens
 
@@ -46,5 +46,6 @@ MERN-EZCHECK is a full-stack project for employee management applications
 
 3. Things I will do better:
 
-- "I will do better by designing the database and various data types before developing the app, ensuring that the data
+- I will do better by designing the database and various data types before developing the app, ensuring that the data
   between the front end and back end remains consistent. This way, I can avoid many data format conversion
+- I will pay more attention to TypeScript type formatting, reduce the use of type: any.

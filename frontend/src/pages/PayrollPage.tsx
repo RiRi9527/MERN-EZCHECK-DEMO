@@ -29,9 +29,10 @@ const PayrollPage = () => {
 
   const { payroll } = usePayroll(userId, date?.toISOString(), "payroll");
 
-  const totalPay =
-    (user?.hourlyWage || 0) * Number(payroll?.hours || 0) +
-    ((user?.hourlyWage || 0) * Number(payroll?.minutes || 0)) / 60;
+  const totalPay = (
+    (user?.hourlyWage || 0) *
+    (Number(payroll?.hours || 0) + Number(payroll?.minutes || 0) / 60)
+  ).toFixed(2);
 
   let previousStart: string = "1";
 

@@ -359,9 +359,11 @@ const getPayroll = async (req: Request, res: Response) => {
           // Set hours and minutes to the Date object
           scheduleCheckIn.setHours(checkInHr + timeDifference);
           scheduleCheckIn.setMinutes(checkInMin);
+          scheduleCheckIn.setSeconds(0);
 
           scheduleCheckOut.setHours(checkOutHr + timeDifference);
           scheduleCheckOut.setMinutes(checkOutMin);
+          scheduleCheckOut.setSeconds(0);
         }
 
         const finalCheckIn =
@@ -376,21 +378,22 @@ const getPayroll = async (req: Request, res: Response) => {
         };
       });
 
-      let totalWorkHours = 0;
+      let totalWorkMinutes = 0;
 
       convertedTimes.forEach((record) => {
         // // If there is a start and end time
         if (record?.title === "Working Time" && record.start && record.end) {
           const start = new Date(record.start);
           const end = new Date(record.end);
-          const workHours =
-            (end.getTime() - start.getTime()) / (1000 * 60 * 60); // in units of hours
-          totalWorkHours += workHours;
+          const workMins = (end.getTime() - start.getTime()) / (1000 * 60); // in units of hours
+          totalWorkMinutes += workMins;
         }
       });
 
-      const hours = Math.floor(totalWorkHours);
-      const minutes = Number(((totalWorkHours - hours) * 60).toFixed(0));
+      console.log(convertedTimes);
+
+      const hours = Math.floor(totalWorkMinutes / 60);
+      const minutes = Math.round(totalWorkMinutes % 60);
       const payRoll = convertedTimes;
       const weekStartDateString = currentPeriodStart.toISOString();
       const weekEndDateString = currentPeriodEnd.toISOString();
@@ -408,23 +411,23 @@ const getPayroll = async (req: Request, res: Response) => {
       }
     }
 
-    let totalWorkHours = 0;
+    let totalWorkMinutes = 0;
 
     attendanceRecords.forEach((record) => {
       // // If there is a start and end time
       if (record.title === "Working Time" && record.start && record.end) {
         const start = new Date(record.start);
         const end = new Date(record.end);
-        const workHours = (end.getTime() - start.getTime()) / (1000 * 60 * 60); // In units of hours
+        const workMins = (end.getTime() - start.getTime()) / (1000 * 60); // In units of hours
 
-        totalWorkHours += workHours;
+        totalWorkMinutes += workMins;
       }
     });
 
     // console.log(attendanceRecords);
 
-    const hours = Math.floor(totalWorkHours);
-    const minutes = Number(((totalWorkHours - hours) * 60).toFixed(0));
+    const hours = Math.floor(totalWorkMinutes / 60);
+    const minutes = Math.round(totalWorkMinutes % 60);
     const payRoll = attendanceRecords;
     const weekStartDateString = currentPeriodStart.toISOString();
     const weekEndDateString = currentPeriodEnd.toISOString();
