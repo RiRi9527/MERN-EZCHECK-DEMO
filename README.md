@@ -18,6 +18,7 @@ MERN-EZCHECK is a full-stack project for employee management applications
    - Use a token for authentication - use jsonwebtoken is a library used in Node.js applications to create and verify JSON Web Tokens (JWT)
    - Use Cloudinary to handle images: upload images to the cloud and store the image URL as a string in the database
    - Use MongoDB as the database and Mongoose to connect to it
+   - Designed authentication permissions where different permissions allow fetching different data. Higher-level permissions can modify and delete data, among other things
 
 2. Problems I solved
 
