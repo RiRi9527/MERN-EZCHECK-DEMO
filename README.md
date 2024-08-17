@@ -1,21 +1,12 @@
 MERN-EZCHECK is a full-stack project for employee management applications
 
-<style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-</style>
 
 <img src="/Main.png" alt="main" width="600"/> 
  <div>
-   <img src="/Payroll.png" alt="payroll" width="300">
- <div class="container">
-  <img src="/Event.png" alt="main" width="300">
-  <img src="/Edit.png" alt="main" width="300">
-</div>
+    <img src="/Payroll.png" alt="payroll" width="300">
+    <img src="/Edit.png" alt="main" width="600">
  </div>
+   <img src="/Event.png" alt="main" width="450">
  
  
 1. Things I did
