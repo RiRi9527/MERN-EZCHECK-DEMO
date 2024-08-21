@@ -21,6 +21,6 @@ router.post("/logout", (req: Request, res: Response) => {
   res.send();
 });
 
-router.get("/users", authController.authGetAllUsers);
+router.get("/users", verifyToken, authController.authGetAllUsers);
 
 export default router;
